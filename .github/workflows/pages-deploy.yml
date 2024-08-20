@@ -1,3 +1,4 @@
+---
 name: "Build and Deploy"
 on:
   push:
@@ -23,9 +24,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  # job to checkout the repository and set up the environment
+  checkout-and-setup:
+    name: "1. Checkout and Setup"
     runs-on: ubuntu-latest
+    outputs:
+      # output of the checkout step
+      checkout-dir: ${{ steps.checkout.outputs.dir }}
+    steps:
+      - name: Checkout Repository
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          # fetch all history for all branches and tags
+          fetch-depth: 0
 
+
+  # job to run a security scan using gitleaks
+  security-scan:
+    name: "2. Run Security Scan"
+    # depends on the completion of the checkout-and-setup job
+    needs: checkout-and-setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # fetch all history for all branches and tags
+          fetch-depth: 0
+      - name: Run Security Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          # token for accessing the GitHub API
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: "3. configure setup"
+    needs: security-scan
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4

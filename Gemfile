@@ -2,8 +2,13 @@
 
 source "https://rubygems.org"
 
-gem "jekyll-theme-chirpy", "~> 7.0", ">= 7.0.1"
+# Use the latest Ruby version
+ruby ">= 0"
+
+# Use the latest version of the jekyll-theme-chirpy gem
+gem "jekyll-theme-chirpy"
 
 group :test do
-  gem "html-proofer", "~> 5.0"
+  # Use the latest version of the html-proofer gem
+  gem "html-proofer"
 end
