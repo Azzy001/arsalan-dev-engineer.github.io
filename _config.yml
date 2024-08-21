@@ -14,7 +14,7 @@ timezone: Europe/London
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Welcome to My Freelance Development & DevOps Services!
+title: Arsalan
 # the main title
 
 tagline: # it will display as the sub-title
@@ -27,10 +27,10 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://arsalan-dev-engineer.github.io/"
 
 github:
-  username: azzy001 # change to your github username
+  username: arsalan-dev-engineer # change to your github username
 
 twitter:
   username: twitter_username # change to your twitter username
